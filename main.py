@@ -1,5 +1,5 @@
 from hashtable_open_addressing import HashTable
-
+import csv
 if __name__ == "__main__":
     ht = HashTable(30)
     """
@@ -14,3 +14,15 @@ if __name__ == "__main__":
     
     # Test your hashtable using appropriate methods
     # from your implementation
+
+    with open('student_data.csv', 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            ht.setitem(row['id'], (row['name'], row['class']))
+            print(ht.getitem(row['id']))
+        #f.close is called automatically
+    print(ht.getitem('s0002b'))
+    print(ht.getitem('s0053c'))
+    print(ht.getitem('fsdaaufd'))
+    ht.del_item('s0053c')
+    print(ht.getitem('s0053c'))
